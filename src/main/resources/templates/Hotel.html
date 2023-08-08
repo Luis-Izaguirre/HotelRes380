@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Hotel Reservation</title>
-  <link rel="stylesheet" href="hotelstyles.css">
+  <link rel="stylesheet" href="../static/hotelstyles.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -27,17 +27,17 @@
     <!-- Add images and details here -->
     <div class="image-grid">
       <div class="image-item">
-        <img src="hotel_image_1.jpg" alt="Hotel Room 1">
+        <img src="../static/hotel_image_1.jpg" alt="Hotel Room 1">
         <h3>Luxurious Rooms</h3>
         <p>Relax and unwind in our spacious and beautifully designed rooms.</p>
       </div>
       <div class="image-item">
-        <img src="hotel_image_2.jpg" alt="Hotel Room 2">
+        <img src="../static/hotel_image_2.jpg" alt="Hotel Room 2">
         <h3>Exquisite Dining</h3>
         <p>Indulge in a culinary journey with our delectable dining options.</p>
       </div>
       <div class="image-item">
-        <img src="hotel_image_3.jpg" alt="Hotel Pool">
+        <img src="../static/hotel_image_3.jpg" alt="Hotel Pool">
         <h3>Refreshing Pool</h3>
         <p>Enjoy a refreshing swim in our stunning pool with a picturesque view.</p>
       </div>
@@ -48,12 +48,12 @@
  <section id="room-search">
     <h2>Room Search</h2>
     <!-- Search criteria form -->
-    <form id="search-form">
+    <form id="search-form" action = "submitForm" method="post">
       <!-- Add your room search form elements here -->
-      <input type="text" placeholder="Check-in Date" id="checkin-date">
-      <input type="text" placeholder="Check-out Date" id="checkout-date">
-      <input type="number" placeholder="Number of Guests" id="num-guests">
-      <button type="submit">Search</button>
+      <input type="text" placeholder="Check-in Date" id="checkin-date" name="checkin-date">
+      <input type="text" placeholder="Check-out Date" id="checkout-date" name="checkout-date">
+      <input type="number" placeholder="Number of Guests" id="num-guests" name = "num-guests">
+      <button type="submit" value="Submit">Search</button>
     </form>
     <!-- Search results with room details, pricing, pictures, and booking feature -->
     <div id="search-results">
@@ -100,7 +100,7 @@
     <p>Contact us: email@example.com | Phone: +1 123-456-7890</p>
   </footer>
  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
- <script src="script.js"></script>
+ <script src="../static/script.js"></script>
 <script>
     document.getElementById("customer-login-form").addEventListener("submit", function(event) {
       event.preventDefault(); // Prevent form submission to handle it manually

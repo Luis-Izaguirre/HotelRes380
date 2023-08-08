@@ -1,16 +1,23 @@
 package HotelModel;
+import HotelControllers.Reservation;
 
+import java.util.Date;
 public class Customer {
     private String idCustomer;
     private String name;
     private String email;
     private String phone;
 
-    Customer(String idCustomer, String name, String email, String phone){
+    private Date checkInDate;
+    private Date checkOutDate;
+
+    Customer(String idCustomer, String name, String email, String phone, Date checkIN, Date checkOut){
         this.idCustomer = idCustomer;
         this.name = name;
         this.email = email;
         this.phone = phone;
+        checkInDate = checkIN;
+        checkOutDate = checkOut;
     }
 
 
@@ -45,4 +52,8 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+
+
+
 }
