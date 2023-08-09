@@ -53,7 +53,29 @@ public class Customer {
         this.phone = phone;
     }
 
+    public static Customer createCustomer(String idCustomer, String name, String email, String phone, Date checkIN, Date checkOut){
+        //Create a new Customer
+        return new Customer(idCustomer, name, email, phone, checkIN, checkOut);
+    }
 
+    public void modifyCustomer(String idCustomer, String name, String email, String phone, Date checkIN, Date checkOut){
+        this.idCustomer = idCustomer;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.checkInDate = checkIN;
+        this.checkOutDate = checkOut;
+    }
 
-
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "idCustomer='" + idCustomer + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", checkInDate=" + checkInDate +
+                ", checkOutDate=" + checkOutDate +
+                '}';
+    }
 }
