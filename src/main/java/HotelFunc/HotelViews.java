@@ -1,4 +1,4 @@
-package HotelControllers;
+package HotelFunc;
 
 public class HotelViews {
 

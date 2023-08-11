@@ -1,6 +1,5 @@
-package HotelControllers;
-import HotelModel.*;
- import java.util.*;
+package HotelFunc;
+import java.util.*;
 
 public class Reservation {
     private static Scanner scan;

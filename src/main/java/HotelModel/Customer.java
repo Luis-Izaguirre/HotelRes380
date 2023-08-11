@@ -1,5 +1,4 @@
 package HotelModel;
-import HotelControllers.Reservation;
 
 import java.util.Date;
 public class Customer {
