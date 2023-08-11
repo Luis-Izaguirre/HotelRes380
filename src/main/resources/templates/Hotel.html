@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Hotel Reservation</title>
   <link rel="stylesheet" href="../static/hotelstyles.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css}" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
   <!-- Navbar -->
@@ -27,17 +28,17 @@
     <!-- Add images and details here -->
     <div class="image-grid">
       <div class="image-item">
-        <img src="../static/hotel_image_1.jpg" alt="Hotel Room 1">
+        <img th:src="@{../static/hotel_image_1.jpg}" alt="Hotel Room 1">
         <h3>Luxurious Rooms</h3>
         <p>Relax and unwind in our spacious and beautifully designed rooms.</p>
       </div>
       <div class="image-item">
-        <img src="../static/hotel_image_2.jpg" alt="Hotel Room 2">
+        <img th:src="@{../static/hotel_image_2.jpg}" alt="Hotel Room 2">
         <h3>Exquisite Dining</h3>
         <p>Indulge in a culinary journey with our delectable dining options.</p>
       </div>
       <div class="image-item">
-        <img src="../static/hotel_image_3.jpg" alt="Hotel Pool">
+        <img th:src="@{../static/hotel_image_3.jpg}" alt="Hotel Pool">
         <h3>Refreshing Pool</h3>
         <p>Enjoy a refreshing swim in our stunning pool with a picturesque view.</p>
       </div>
@@ -48,7 +49,7 @@
  <section id="room-search">
     <h2>Room Search</h2>
     <!-- Search criteria form -->
-    <form id="search-form" action = "submitForm" method="post">
+    <form id="search-form" th:action = "@{submitForm}" method="post">
       <!-- Add your room search form elements here -->
       <input type="text" placeholder="Check-in Date" id="checkin-date" name="checkin-date">
       <input type="text" placeholder="Check-out Date" id="checkout-date" name="checkout-date">
@@ -99,9 +100,9 @@
   <footer>
     <p>Contact us: email@example.com | Phone: +1 123-456-7890</p>
   </footer>
- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
- <script src="../static/script.js"></script>
-<script>
+ <script th:src="@{https://cdn.jsdelivr.net/npm/flatpickr}"></script>
+ <script src="@{../static/script.js"} src="..//static/script.js"></script>
+<script th:inline="javascript">
     document.getElementById("customer-login-form").addEventListener("submit", function(event) {
       event.preventDefault(); // Prevent form submission to handle it manually
 
@@ -116,7 +117,7 @@
         alert("Invalid username or password. Please try again.");
       }
     });
-  </script>
+</script>
 <script>
     document.getElementById("employee-login-form").addEventListener("submit", function(event) {
       event.preventDefault(); // Prevent form submission to handle it manually
