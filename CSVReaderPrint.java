@@ -17,13 +17,13 @@ public class CSVReaderPrint
             
             BufferedReader br = new BufferedReader(new FileReader("Reservations.csv"));
 
-            while ((line = br.readLine()) != null) { //skips first line in the csv file
+            while ((line = br.readLine()) != null) { //skips first line in the csv file.
                 if (!firstLineSkipped) {
                     firstLineSkipped = true;
                     continue; 
                 }
 
-                String[] reservation = line.split(splitBy);
+                String[] reservation = line.split(splitBy);// formats and prints the data from the Reservations.csv file.
                 System.out.println("Customer's Name: " + reservation[0] + ", Contact: " + reservation[1] + ", Guest(s): " + reservation[2] + ", Room Number: " + reservation[3] + ", Room Type: " + reservation[4] + ", Check In Date: " + reservation[5] + ", Check In Time: " + reservation[6] + ", Check Out Date: " + reservation[7] + ", Check Out Time: " + reservation[8] + ", Fees: " + reservation[9] + ", Discount: " + reservation[10] + ", Total: " + reservation[11] + ", Check in/out status: " + reservation[12]);
             }
         } catch (IOException e) {
@@ -32,13 +32,13 @@ public class CSVReaderPrint
     } 
 
     public void AddReservation(String Name, String Contact, int Guests, int RoomNum, int RoomType, String CheckInDate, String CheckInTime, String CheckOutDate, String CheckOutTime, Double Fees, Double Discount, String CheckInOutStatus){
-        Double Total = Fees - Discount;
+        Double Total = Fees - Discount;// calculates total 
         String csvFile = "Reservations.csv";
-        String delimiter = ","; 
+        String delimiter = ","; //seperates the inputs with a ","
 
-        try (FileWriter writer = new FileWriter(csvFile, true)) {
-            // Appending a new line of data
-            writer.append(Name).append(delimiter)
+        try (FileWriter writer = new FileWriter(csvFile, true)) {//prints to a new line on the Reservations.csv file.
+            
+            writer.append(Name).append(delimiter)//prints and formats the input to the Reservations.csv file.
                     .append(Contact).append(delimiter)
                     .append(Integer.toString(Guests)).append(delimiter)
                     .append(Integer.toString(RoomNum)).append(delimiter)
@@ -52,10 +52,10 @@ public class CSVReaderPrint
                     .append("$"+Double.toString(Total)).append(delimiter)
                     .append(CheckInOutStatus).append("\n");
 
-            System.out.println("New line added to the CSV file!");
+            System.out.println("Reservation Confirmed!");
 
         } catch (IOException e) {
-            System.out.println("Fail!");
+            System.out.println("Fail!");//path may be incorrect if printed in terminal or missing inputs.
             e.printStackTrace();
 
         }

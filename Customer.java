@@ -14,6 +14,9 @@ public class Customer{
            if (RoomType == 3) {
             Fees = 250.00;
           }
+          Date F = new Date();
+          Fees = Fees*(F.DateDifference(CheckInDate, CheckOutDate));
+
     
         CSVReaderPrint B = new CSVReaderPrint(); // adds reservation to the csv file
         B.AddReservation(Name,Contact,Guests,001,RoomType,CheckInDate,"2:00 PM",CheckOutDate,"11:00 AM",Fees,0.00,"No");
@@ -22,6 +25,6 @@ public class Customer{
 
 /*
  * How to Call method
- * Customer S = new Customer();
-        S.CreateReservation("Ori Cohen", "Ori@email.com", 5, "8/19/23", "8/21/23", 3);
+ *  Customer S = new Customer();
+        S.CreateReservation("Ori Cohen", "Ori@email.com", 5, "08/19/2023", "08/21/2023", 3);
  */
