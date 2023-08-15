@@ -16,7 +16,7 @@ public class Customer{
           }
     
         CSVReaderPrint B = new CSVReaderPrint(); // adds reservation to the csv file
-        B.AddReservation(Name,Contact,Guests,001,4,CheckInDate,"2:00 PM",CheckOutDate,"11:00 AM",Fees,0.00,"No");
+        B.AddReservation(Name,Contact,Guests,001,RoomType,CheckInDate,"2:00 PM",CheckOutDate,"11:00 AM",Fees,0.00,"No");
     }
 }
 
