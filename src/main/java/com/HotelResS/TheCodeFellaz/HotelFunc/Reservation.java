@@ -1,4 +1,4 @@
-package HotelFunc;
+package com.HotelResS.TheCodeFellaz.HotelFunc;
 import java.util.*;
 
 public class Reservation {

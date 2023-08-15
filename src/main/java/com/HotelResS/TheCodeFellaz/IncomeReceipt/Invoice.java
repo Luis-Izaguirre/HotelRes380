@@ -1,4 +1,4 @@
-package IncomeReceipt;
+package com.HotelResS.TheCodeFellaz.IncomeReceipt;
 
 import java.util.*;
 

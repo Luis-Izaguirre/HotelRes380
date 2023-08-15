@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Displayed Data</title>
+
+</head>
+<body>
+<h2>Search Results</h2>
+<p th:text="name: ${customer.name}"></p>
+<p th:text="numGuests: ${customer.numGuests}"></p>
+<p th:text="email: ${customer.email}"></p>
+<p th:text="phone: ${customer.phone}"></p>
+<p th:text="checkInDate: ${customer.checkInDate}"></p>
+<p th:text="checkOutDate: ${customer.checkOutDate}"></p>
+<a href="/register">Submit another message</a>
+</body>
+</html>

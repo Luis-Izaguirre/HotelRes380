@@ -40,7 +40,7 @@ nav a {
 
 /* Styling for the hero section */
 .hero {
-  background-image: url("hotel_image.jpg"); 
+  background-image: url("/images/hotel_image.jpg");
   background-size: cover;
   background-position: center;
   text-align: center;
