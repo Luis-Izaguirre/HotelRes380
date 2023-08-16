@@ -1,9 +1,10 @@
+/* this is for the body CSS */ 
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
-
+/* this is for header CSS */
 header {
   background-color: #333;
   color: #fff;
@@ -16,11 +17,11 @@ header a {
   text-decoration: none;
   padding-left: 20px;
 }
-
+/* this is dashboard CSS */
 .dashboard {
   display: flex;
 }
-
+/* this is for navigation pane */
 nav {
   width: 200px;
   background-color: #f1f1f1;
@@ -40,7 +41,7 @@ nav a {
   text-decoration: none;
   color: #333;
 }
-
+/* this is for main class container */
 main {
   flex: 1;
   padding: 20px;
@@ -50,7 +51,7 @@ main h2 {
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
 }
-
+/* this is for ordered table */
 table {
   border-collapse: collapse;
   width: 100%;
