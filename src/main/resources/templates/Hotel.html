@@ -64,12 +64,12 @@
 <section id="room-search">
   <h2>Room Search</h2>
   <!-- Search criteria form -->
-  <form id="search-form" action="#" th:action="@{/register}"  th:object="${customer}" method="post">
+  <form id="search-form" action="#" th:action="@{/register}" th:object="${resDto}" method="post">
     <!-- Add your room search form elements here -->
     Name:  <input type="text" th:field="*{name}"/>
     Email: <input type="text" th:field="*{email}"/>
     Phone: <input type="text"  th:field="*{phone}"/>
-    Number of Guests: <input type="text" th:field="*{numGuests}"/>
+    Number of Guests: <input type="text" th:field="*{guestNum}"/>
     Check-in Date: <input type="text" th:field="*{checkInDate}"/>
     Check-out Date: <input type="text" th:field="*{checkOutDate}"/>
 

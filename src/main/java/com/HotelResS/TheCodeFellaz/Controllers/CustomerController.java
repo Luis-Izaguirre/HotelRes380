@@ -1,5 +1,8 @@
 package com.HotelResS.TheCodeFellaz.Controllers;
 
+import com.HotelResS.TheCodeFellaz.CSVReaderPrint;
+import com.HotelResS.TheCodeFellaz.HotelFunc.Reservation;
+import com.HotelResS.TheCodeFellaz.HotelFunc.ReservationDTO;
 import com.HotelResS.TheCodeFellaz.HotelModel.Customer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,21 +13,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class CustomerController {
 
-    @GetMapping("/register")
+    @GetMapping("/")
     public String showForm(Model model){
-        Customer customer = new Customer();
-        model.addAttribute("customer", customer);
-
-
+        ReservationDTO resDto = new ReservationDTO();
+        model.addAttribute("resDto", resDto);
         return "Hotel";
     }
+
 
     @PostMapping("/register")
-    public String submitForm(@ModelAttribute Customer customer, Model model){
-        System.out.println(customer);
-        model.addAttribute("customer", customer);
-        return "Hotel";
+    public String submitForm(@ModelAttribute ReservationDTO resDto, Model model){
+        System.out.println(resDto);
+        model.addAttribute("resDto", resDto);
+        return "display-input";
     }
+
+    private Reservation transformFromDTO(ReservationDTO resDTO){
+
+        CSVReaderPrint S = new CSVReaderPrint();
+        S.AddReservation(resDTO.getName(),resDTO.getEmail(),resDTO.getGuestNum(),4,1, resDTO.getCheckInDate(), "2:00PM", resDTO.getCheckOutDate(),"11:00AM", 1900.00, 0.00, "No");
+
+        Customer customer = new Customer(resDTO.getName(),resDTO.getEmail());
+        Reservation reservation = new Reservation(resDTO.getGuestNum(), resDTO.getCheckInDate(), resDTO.getCheckOutDate(), customer);
+
+        return reservation;
+    }
+
+
+
+
 }
 /*
 

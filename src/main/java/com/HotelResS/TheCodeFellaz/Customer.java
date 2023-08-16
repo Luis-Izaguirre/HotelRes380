@@ -1,3 +1,5 @@
+package com.HotelResS.TheCodeFellaz;
+
 public class Customer{
 
     public void CreateReservation(String Name, String Contact, int Guests, String CheckInDate, String CheckOutDate, int RoomType)

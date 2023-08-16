@@ -5,38 +5,37 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import java.lang.annotation.Repeatable;
 
 public class Room {
-    private String checkinDate;
-    private String checkoutDate;
-    private String numGuests;
+    private int roomType;
+    private int roomPrice;
+    private int roomCapacity;
 
-    public Room(String checkinDate, String checkoutDate, String numGuests) {
-        this.checkinDate = checkinDate;
-        this.checkoutDate = checkoutDate;
-        this.numGuests = numGuests;
+    public Room(int roomType, int roomPrice, int roomCapacity) {
+        this.roomType = roomType;
+        this.roomPrice = roomPrice;
+        this.roomCapacity = roomCapacity;
     }
 
-
-    public String getCheckinDate() {
-        return checkinDate;
+    public int getRoomType() {
+        return roomType;
     }
 
-    public void setCheckinDate(String checkinDate) {
-        this.checkinDate = checkinDate;
+    public void setRoomType(int roomType) {
+        this.roomType = roomType;
     }
 
-    public String getCheckoutDate() {
-        return checkoutDate;
+    public int getRoomPrice() {
+        return roomPrice;
     }
 
-    public void setCheckoutDate(String checkoutDate) {
-        this.checkoutDate = checkoutDate;
+    public void setRoomPrice(int roomPrice) {
+        this.roomPrice = roomPrice;
     }
 
-    public String getNumGuests() {
-        return numGuests;
+    public int getRoomCapacity() {
+        return roomCapacity;
     }
 
-    public void setNumGuests(String numGuests) {
-        this.numGuests = numGuests;
+    public void setRoomCapacity(int roomCapacity) {
+        this.roomCapacity = roomCapacity;
     }
 }
