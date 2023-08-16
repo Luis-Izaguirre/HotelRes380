@@ -1,28 +1,22 @@
 
 package com.HotelResS.TheCodeFellaz.HotelFunc;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.io.*;
+
+
 
 public class Login {
 
     
     Employee employee = new Employee();
-    Manger manager = new Manger();
+    //Manger manager = new Manger();
     
     private String username;
     private String password;
     private String accountType;
     private boolean loginKey;
     
-
-    public Login( String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
     public String getUsername()
     {
@@ -54,7 +48,10 @@ public class Login {
         this.accountType = accountType;
     }
 
-
+    public Login( String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 //This method returns a boolean, based on the username and password provided by the user
  public boolean loginUser(String inputUsername, String inputPassword)
     {
@@ -64,13 +61,13 @@ public class Login {
         boolean firstLineSkipped = false; 
 
         try {
-            
+
             BufferedReader br = new BufferedReader(new FileReader("user_accounts.csv"));
 
             while ((line = br.readLine()) != null) { //skips first line in the csv file
                 if (!firstLineSkipped) {
                     firstLineSkipped = true;
-                    continue; 
+                    continue;
                 }
 
                 //array of strings that checks username, password, and account type
@@ -81,16 +78,16 @@ public class Login {
                 String accountType = userData[2];
 
                 //user validation
-                if (inputUsername.equals(username) && inputPassword.equals(password))
-                {
+                if (inputUsername.equals(username) && inputPassword.equals(password)) {
                     return loginKey;
                 }
 
-        } catch (IOException e) {
+            }
+        }catch (IOException e) {
             e.printStackTrace();
         }
         
-        return null;
+        return false;
     } 
 
 /* Potential use of map to authenticate user login NOT apart of submission
@@ -113,5 +110,4 @@ public class Login {
         return null;
     }
 */
-}
 }

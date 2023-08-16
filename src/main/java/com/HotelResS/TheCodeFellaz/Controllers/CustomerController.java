@@ -4,17 +4,22 @@ import com.HotelResS.TheCodeFellaz.CSVReaderPrint;
 import com.HotelResS.TheCodeFellaz.HotelFunc.Reservation;
 import com.HotelResS.TheCodeFellaz.HotelFunc.ReservationDTO;
 import com.HotelResS.TheCodeFellaz.HotelModel.Customer;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class CustomerController {
 
+
     @GetMapping("/")
-    public String showForm(Model model){
+    public String showForm(@NotNull Model model){
         ReservationDTO resDto = new ReservationDTO();
         model.addAttribute("resDto", resDto);
         return "Hotel";
@@ -22,13 +27,23 @@ public class CustomerController {
 
 
     @PostMapping("/register")
-    public String submitForm(@ModelAttribute ReservationDTO resDto, Model model){
+    public String submitForm(@ModelAttribute ReservationDTO resDto, @org.jetbrains.annotations.NotNull Model model){
         System.out.println(resDto);
+        Reservation resSave = transformFromDTO(resDto);
         model.addAttribute("resDto", resDto);
         return "display-input";
     }
 
-    private Reservation transformFromDTO(ReservationDTO resDTO){
+    /*
+    @GetMapping("/test")
+    public String viewReservation( @ModelAttribute , Model model){
+
+    }
+    */
+
+
+
+    private @NotNull Reservation transformFromDTO(ReservationDTO resDTO){
 
         CSVReaderPrint S = new CSVReaderPrint();
         S.AddReservation(resDTO.getName(),resDTO.getEmail(),resDTO.getGuestNum(),4,1, resDTO.getCheckInDate(), "2:00PM", resDTO.getCheckOutDate(),"11:00AM", 1900.00, 0.00, "No");
