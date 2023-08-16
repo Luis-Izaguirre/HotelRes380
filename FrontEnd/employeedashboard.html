@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- This HTML web page is for employee access having features of orders,profile,setting and user dashboard -->
 <head>
   <title>Employee Dashboard</title>
   <link rel="stylesheet" href="employeedashboard.css">
@@ -19,7 +20,7 @@
         <li><a href="#room-cleaning">Room Cleaning</a></li>
       </ul>
     </nav>
-
+<!-- This is for home page -->
     <main>
       <section id="home">
         <h2>Home</h2>
@@ -29,6 +30,7 @@
         </div>
       </section>
 
+<!-- This is for checking in -->
       <section id="check-in">
         <h2>Check-in</h2>
         <p>Process guest check-ins here.</p>
@@ -47,6 +49,7 @@
         </div>
       </section>
 
+<!-- This is for checking out -->
       <section id="check-out">
         <h2>Check-out</h2>
         <p>Process guest check-outs here.</p>
@@ -55,6 +58,7 @@
         </div>
       </section>
 
+<!-- This is for room cleaning -->
       <section id="room-cleaning">
         <h2>Room Cleaning</h2>
         <p>Track room cleaning status here.</p>
@@ -65,6 +69,7 @@
     </main>
   </div>
 
+<!-- This is an inlined javascript for logout feature -->
   <script>
     document.getElementById("logout-link").addEventListener("click", function() {
       logout();
@@ -75,7 +80,7 @@
       // For simplicity, we'll just redirect the employee back to the home page (hotel.html).
       window.location.href = "hotel.html";
     }
-
+<!-- This is an inlined javascript for calculating the room rent -->
     function applyPriceChangeAndDiscount() {
       const roomNumber = document.getElementById("room-number").value;
       const newPrice = parseFloat(document.getElementById("new-price").value);
