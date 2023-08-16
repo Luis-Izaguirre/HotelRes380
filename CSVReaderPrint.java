@@ -61,6 +61,57 @@ public class CSVReaderPrint
         }
     }
 
+    public String ReturnReservation(String NameIn) {
+        return GetReservation(NameIn);
+    }
+
+    public String searchRowByFirstValue(String csvFilePath, String targetValue) throws IOException {
+        String result = null;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (values.length > 0 && values[0].equals(targetValue)) {
+                    result = line;
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public String GetReservation(String Name) {
+        String csvFilePath = "Reservations.csv";
+        String targetValue = Name;
+
+        try {
+            String foundRow = searchRowByFirstValue(csvFilePath, targetValue);
+            if (foundRow != null) {
+                String[] values = foundRow.split(",");
+                if (values.length >= 7) {
+                    String formattedOutput =
+                            "Name: " + values[0] + " " +
+                            "Email: " + values[1] + " " +
+                            "Guest(s): " + values[2] + " " +
+                            "Check-In-Date: " + values[5] + " " +
+                            "Check-Out-Date: " + values[7] + " " +
+                            "Room-Number: " + values[3] + " " +
+                            "Room-Type: " + values[4];
+                    return formattedOutput;
+                } else {
+                    return "Not enough values in the row.";
+                }
+            } else {
+                return "Row not found.";
+            }
+        } catch (IOException e) {
+            return "Error reading the CSV file: " + e.getMessage();
+        }
+    }
+
 }
 
 
