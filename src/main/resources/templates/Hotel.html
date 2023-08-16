@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<!--xmlns:th="http://www.thymeleaf.org" -->
 <head>
-  <meta charset="UTF-8">
+  <meta http-equiv= "Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Hotel Reservation</title>
 
   <!--Below for styling fonts, and calendar date functionality-->
@@ -11,22 +13,22 @@
   <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css}">
 
   <!-To link to CSS Bootstrap and Jquery Servers-->
-  <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-  <link rel="stylesheet" href="../static/hotelstyles.css">
+  <!-link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"/-->
+  <link rel="stylesheet" href="../static/css/hotelstyles.css" th:href="@{/css/hotelstyles.css}">
 
-  <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"></script>
+  <script th:src="@{http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
 
 
 </head>
 <body>
 <!-- Navbar -->
-<nav>
+<nav class="navbar navbar-defualt">
   <ul>
-    <li><a href="hotel.html#home" target="_blank">Home</a></li>
-    <li><a href="hotel.html#room-search" target="_blank">Room Search</a></li>
-    <li><a href="hotel.html#hotel-info" target="_blank">Hotel Info</a></li>
-    <li><a href="hotel.html#login" target="_blank">Login</a></li>
+    <li><a th:href="@{/Hotel.html#home}">Home</a></li>
+    <li><a th:href="@{/Hotel.html#room-search}">Room Search</a></li>
+    <li><a th:href="@{/Hotel.html#hotel-info}">Hotel Info</a></li>
+    <li><a th:href="@{/Hotel.html#login}">Login</a></li>
   </ul>
 </nav>
 
@@ -39,39 +41,55 @@
   <!-- Add images and details here -->
   <div class="image-grid">
     <div class="image-item">
-      <img src="../static/hotel_image_1.jpg" alt="Hotel Room 1">
+      <img src="../static/images/hotel_image_1.jpg" th:src="@{/images/hotel_image_1.jpg}" alt="Hotel Room 1">
       <h3>Luxurious Rooms</h3>
       <p>Relax and unwind in our spacious and beautifully designed rooms.</p>
     </div>
     <div class="image-item">
-      <img src="../static/hotel_image_2.jpg" alt="Hotel Room 2">
+      <img src="../static/images/hotel_image_2.jpg" th:src="@{/images/hotel_image_2.jpg}" alt="Hotel Room 2">
       <h3>Exquisite Dining</h3>
       <p>Indulge in a culinary journey with our delectable dining options.</p>
     </div>
     <div class="image-item">
-      <img src="../static/hotel_image_3.jpg" alt="Hotel Pool">
+      <img src="../static/images/hotel_image_3.jpg" th:src="@{/images/hotel_image_3.jpg}" alt="Hotel Pool">
       <h3>Refreshing Pool</h3>
       <p>Enjoy a refreshing swim in our stunning pool with a picturesque view.</p>
     </div>
   </div>
 </section>
 
+
+
 <!-- Room Search -->
 <section id="room-search">
   <h2>Room Search</h2>
   <!-- Search criteria form -->
-  <form id="search-form">
+  <form id="search-form" action="#" th:action="@{/register}"  th:object="${customer}" method="post">
     <!-- Add your room search form elements here -->
-    <input type="text" placeholder="Check-in Date" id="checkin-date">
-    <input type="text" placeholder="Check-out Date" id="checkout-date">
-    <input type="number" placeholder="Number of Guests" id="num-guests">
-    <button type="submit">Search</button>
+    Name:  <input type="text" th:field="*{name}"/>
+    Email: <input type="text" th:field="*{email}"/>
+    Phone: <input type="text"  th:field="*{phone}"/>
+    Number of Guests: <input type="text" th:field="*{numGuests}"/>
+    Check-in Date: <input type="text" th:field="*{checkInDate}"/>
+    Check-out Date: <input type="text" th:field="*{checkOutDate}"/>
+
+    <button type="submit" value="Submit">Search</button>
   </form>
   <!-- Search results with room details, pricing, pictures, and booking feature -->
   <div id="search-results">
     <!-- Display search results here -->
   </div>
 </section>
+
+
+<!--Original Version
+    <input type="text" placeholder="Name" id="name" th:field="*{name}" >
+    <input type="text" placeholder="Number of Guests" id="num-guests" th:field="*{numGuests}" >
+    <input type="text" placeholder="Email" id="email" th:field="*{email}" >
+    <input type="text" placeholder="Check-in Date" id="checkin-date" th:field="*{checkInDate}" >
+    <input type="text" placeholder="Check-out Date" id="checkout-date" th:field="*{checkOutDate}" >
+    -->
+
 
 
 <!-- Hotel Info -->
