@@ -13,16 +13,24 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
 
 
+    //Request access to the hotel webpage
     @RequestMapping(value="/Hotel.html", method= RequestMethod.GET)
     public String showForm(@NotNull Model model){
+        //Object that holds information for both reservation and customer
         ReservationDTO resDto = new ReservationDTO();
+        //MVC Design, So we are passing are object as a model from controller to the view = website to make it dynamic and
+        // receive data by injection.
+
         model.addAttribute("resDto", resDto);
         return "Hotel";
     }
+    //Requesting mapping to the view so that we can send a response or data to the webpage.
     @RequestMapping(value="/register", method=RequestMethod.POST)
     public String submitForm(@ModelAttribute ReservationDTO resDto, @org.jetbrains.annotations.NotNull Model model){
-        System.out.println(resDto);
+        //System.out.println(resDto)
+        //Object
         Reservation resSave = transformFromDTO(resDto);
+
         model.addAttribute("resDto", resDto);
         return "display-input";
     }

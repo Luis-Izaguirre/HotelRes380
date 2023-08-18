@@ -1,6 +1,5 @@
 package com.HotelResS.TheCodeFellaz.Controllers;
 
-import com.HotelResS.TheCodeFellaz.CSVBASE.RoomDatabase;
 import com.HotelResS.TheCodeFellaz.HotelModel.Room;
 import com.HotelResS.TheCodeFellaz.Service.RoomService;
 import org.jetbrains.annotations.NotNull;
@@ -9,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,11 +25,12 @@ public class RoomsController {
         return "rooms";
     }
 
-    /*
-    @RequestMapping(value="/rooms.html")
-    public String reserveARoom(@RequestParam("roomSelection") int roomSelection, Model model ){
-        Room reserve =
+
+    @RequestMapping(value="/payment-page")
+    public String reserveARoom(){
+
+        return "payment-page";
     }
-    */
+
 
 }

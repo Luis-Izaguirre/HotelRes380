@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment page</title>
+    <style>
+        body{
+        margin: 0;
+        padding: 0;
+        background-color: #1f314d;
+        }
+        form{
+        width: 600px;
+        margin: 100px auto 0 auto;
+        box-shadow: 0 4px 8px 0 white, 0 4px 8px 0 white;
+        }
+        h1{
+        text-align: center;
+        }
+
+        .box1 {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 15px;
+        box-sizing: border-box;
+        margin: 10px 0 15px 0;
+        background-color: #30475e;
+        }
+
+        .div1{
+        display: inline-block;
+        }
+
+        .box2{
+        padding: 10px;
+        border: none;
+        border-radius: 15px;
+        margin: 10px 0 15px 0;
+        background-color: #30475e;
+        }
+
+        .btn{
+        width: 45%;
+          }
+
+        .table{
+        margin: auto;
+        }
+
+        input::placeholder{
+        color: white;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <form action="action">
+        <h1 style="color: #0054A9">Payment</h1>
+        <label style="color: #0054A9" >Cardholders Name</label><br>
+        <input class="box1" type="text" name="name" id="name" placeholder="Enter Name"><br>
+        <label style="color: #0054A9" >Email</label><br>
+        <input class="box1" type="email" name="email" id="email" placeholder="Enter Email"><br>
+        <label style="color: #0054A9" >Card Number</label><br>
+        <input class="box1" type="number" name="number" id="number" placeholder="1234 1234 1234 1234"><br>
+
+
+        <div class="div1">
+            <label style="color: #0054A9" >Card expir month</label><br>
+            <input class="box2" type="month" name="month" id="month" placeholder="MM"><br>
+        </div>
+
+        <div class="div1">
+            <label style="color: #0054A9" >Card expir year</label><br>
+            <input class="box2" type="year" name="year" id="year" placeholder="yyyy"><br>
+        </div>
+
+
+        <div class="div1">
+            <label style="color: #0054A9" >Card CVC</label><br>
+            <input class="box2" type="cvc" name="cvc" id="CVC" placeholder="cvc">
+        </div>
+        <br>
+        <button class="btn" type="button">Pay Now</button>
+        <button class="btn" type="button">Return</button>
+    </form>
+    <br>
+
+    <table class="table" >
+        <thead>
+        <tr style="color: #0054A9">
+            <th scope="row">No    |</th>
+            <th scope="row">Room No    |</th>
+            <th scope="row">Room Type    |</th>
+            <th scope="row">Cost Per Night    |</th>
+            <th scope="row">Maximum People    </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr style="color: white">
+            <th scope="col">1</th>
+            <td>101</td>
+            <td>1(Single)</td>
+            <td>60</td>
+            <td>1</td>
+
+        </tr>
+        <tr style="color: white">
+            <th scope="col">2</th>
+            <td>102</td>
+            <td>2(Double)</td>
+            <td>80</td>
+            <td>3</td>
+
+        </tr>
+        <tr style="color: white">
+            <th scope="col">3</th>
+            <td>103</td>
+            <td>3(Suite)</td>
+            <td>120</td>
+            <td>8</td>
+
+        </tr>
+        <tr style="color: white">
+            <th scope="col">4</th>
+            <td>104</td>
+            <td>1</td>
+            <td>60</td>
+            <td>1</td>
+
+        </tr>
+        <tr style="color: white">
+            <th scope="col">5</th>
+            <td>105</td>
+            <td>1</td>
+            <td>60</td>
+            <td>1</td>
+
+        </tr>
+        <tr style="color: white">
+            <th scope="col">6</th>
+            <td>106</td>
+            <td>1</td>
+            <td>60</td>
+            <td>1</td>
+            <
+        </tr>
+        </tbody>
+    </body>
+
+</body>
+</html>

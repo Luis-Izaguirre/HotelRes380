@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-public class RoomDatabase {
+public class RoomDB {
     public static List<Room> allRooms = new ArrayList<>();
 
     public static List<Room> getAllRooms() {
