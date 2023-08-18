@@ -1,4 +1,4 @@
-package com.HotelResS.TheCodeFellaz;
+package com.HotelResS.TheCodeFellaz.CSVBASE;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,7 +8,8 @@ import java.io.IOException;
 
 public class CSVReaderPrint 
 {
-    public void PrintReservations()// prints all the reservations from the csv file in a readable format to the terminal, its primary purpose is for testing but will be adapted later
+    // prints all the reservations from the csv file in a readable format to the terminal, its primary purpose is for testing but will be adapted later
+    public void PrintReservations()
     {
         
         String line = ""; //used to check if the next line is empty
@@ -34,7 +35,7 @@ public class CSVReaderPrint
         }
     } 
 
-            //addreservation is called by the Customer class and recives its inputs form the CreateReservation method
+    //addreservation is called by the Customer class and recives its inputs form the CreateReservation method
     public void AddReservation(String Name, String Contact, int Guests, int RoomNum, int RoomType, String CheckInDate, String CheckInTime, String CheckOutDate, String CheckOutTime, Double Fees, Double Discount, String CheckInOutStatus)
     {
         Double Total = Fees - Discount;// calculates total 

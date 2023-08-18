@@ -1,4 +1,6 @@
-package com.HotelResS.TheCodeFellaz;
+package com.HotelResS.TheCodeFellaz.CSVBASE;
+
+import com.HotelResS.TheCodeFellaz.CSVBASE.CSVReaderPrint;
 
 public class csvTest {
     public static void main(String[] args) throws Exception{

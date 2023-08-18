@@ -1,47 +1,31 @@
 package com.HotelResS.TheCodeFellaz.Controllers;
 
-import com.HotelResS.TheCodeFellaz.CSVReaderPrint;
+import com.HotelResS.TheCodeFellaz.CSVBASE.CSVReaderPrint;
 import com.HotelResS.TheCodeFellaz.HotelFunc.Reservation;
 import com.HotelResS.TheCodeFellaz.HotelFunc.ReservationDTO;
 import com.HotelResS.TheCodeFellaz.HotelModel.Customer;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CustomerController {
 
 
-    @GetMapping("/")
+    @RequestMapping(value="/Hotel.html", method= RequestMethod.GET)
     public String showForm(@NotNull Model model){
         ReservationDTO resDto = new ReservationDTO();
         model.addAttribute("resDto", resDto);
         return "Hotel";
     }
-
-
-    @PostMapping("/register")
+    @RequestMapping(value="/register", method=RequestMethod.POST)
     public String submitForm(@ModelAttribute ReservationDTO resDto, @org.jetbrains.annotations.NotNull Model model){
         System.out.println(resDto);
         Reservation resSave = transformFromDTO(resDto);
         model.addAttribute("resDto", resDto);
         return "display-input";
     }
-
-    /*
-    @GetMapping("/test")
-    public String viewReservation( @ModelAttribute , Model model){
-
-    }
-    */
-
-
 
     private @NotNull Reservation transformFromDTO(ReservationDTO resDTO){
 
