@@ -62,31 +62,48 @@
   <div class="header">Rooms</div>
 
   <div class="search-area">
-    <label for="RoomSelection">Room Type:</label>
-    <select id="RoomSelection">
-      <option th:each="room :${roomlist}" th:if="${room.availability}" th:text="${room.roomNum}" th:value="${room.roomNum}" >1</option>
-      <!-- Display Please Try Again Message-->
-      <option th:if="${#lists.size(roomlist) == 0}" disabled>Please try again</option>
 
-    </select>
 
+
+    <label>Select Room:</label>
+
+    <form th:action="@{/payment-page}" method="post">
+      <div th:each="room : ${roomlist}">
+        <input type="text" th:id="${'room' + room.roomNum}" th:value="${room.roomNum}" th:name="roomNum" th:disabled="${room.availability}">
+        <label th:for="${'room' + room.roomNum}" th:text="${'Room ' + room.roomNum}"></label>
+        <span th:if="${room.availability}" style="color:red;">(Not Available)</span>
+      </div>
+      <input type="submit">
+    </form>
 
 
     <!-- OLD BUTTONS TO SELECT CHECK-IN or CHECK-OUT DATES, FUTURE
-    <label for="DateInTBox">Check in Date:</label>
-    <input type="date" id="DateInTBox">
 
 
-    <label for="DateOutTBox">Check out Date:</label>
-    <input type="date" id="DateOutTBox">
--->
-    <button onclick="Search()">Submit</button>
+     <label for="DateInTBox">Check in Date:</label>
+     <input type="date" id="DateInTBox">
+
+
+     <label for="DateOutTBox">Check out Date:</label>
+     <input type="date" id="DateOutTBox">
+
+      <input type="number" th:field="*{number}"/>
+       </select>
+
+    <select id="RoomSelection">
+      <option th:each="room :${roomlist}" th:if="${room.availability}" th:text="${room.roomNum}" th:value="${room.roomNum}" ></option>
+      <option th:if="${#lists.size(roomlist) == 0}" disabled>Please try again</option>
+
+
+ -->
+
+
 
 
 
     <!-- OLD RESET BUTTON <button onclick="reset()">Reset</button>  -->
 
-  </div>
+    </div>
 
 
   <table class="rooms-table">

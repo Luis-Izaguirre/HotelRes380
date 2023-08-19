@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class CSVReaderPrint 
 {
-    // prints all the reservations from the csv file in a readable format to the terminal, its primary purpose is for testing but will be adapted later
-    public void PrintReservations()
+    public void PrintReservations()// prints all the reservations from the csv file in a readable format to the terminal, its primary purpose is for testing but will be adapted later
     {
         
         String line = ""; //used to check if the next line is empty
@@ -35,7 +35,7 @@ public class CSVReaderPrint
         }
     } 
 
-    //addreservation is called by the Customer class and recives its inputs form the CreateReservation method
+            //addreservation is called by the Customer class and recives its inputs form the CreateReservation method
     public void AddReservation(String Name, String Contact, int Guests, int RoomNum, int RoomType, String CheckInDate, String CheckInTime, String CheckOutDate, String CheckOutTime, Double Fees, Double Discount, String CheckInOutStatus)
     {
         Double Total = Fees - Discount;// calculates total 
@@ -60,12 +60,22 @@ public class CSVReaderPrint
 
             System.out.println("Reservation Confirmed!");//for testing only, prints to terminal
 
+            DateRangeGenerator J = new DateRangeGenerator();
+        ArrayList<String> S = J.Lain(CheckInDate, CheckOutDate);//takes the check in and check out date and outputs an array with all the dates for the reservation
+        System.out.println(S);
+
+        CSVDateUpdater B =new CSVDateUpdater();// updates the Rooms.csv file by adding the reservation dates to the row with the room number for the reservation.
+        B.UpdateRoom(S, RoomNum);
+
+
         } catch (IOException e) {
             System.out.println("Fail!");//path may be incorrect if printed in terminal or missing inputs. for testing prints to terminal
             e.printStackTrace();
 
         }
     }
+
+    
 
     public String ReturnReservation(String NameIn) 
     {

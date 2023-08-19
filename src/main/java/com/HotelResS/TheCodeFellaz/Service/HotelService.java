@@ -11,17 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class HotelService {
     //Used to add to CSVBASE and potentially use the reservation class.
-    public static @NotNull Reservation transformFromDTO(ReservationDTO resDTO){
+    public void transformFromDTO(Reservation res){
 
         CSVReaderPrint S = new CSVReaderPrint();
-        S.AddReservation(resDTO.getName(),resDTO.getEmail(),resDTO.getGuestNum(),4,1, resDTO.getCheckInDate(), "2:00PM", resDTO.getCheckOutDate(),"11:00AM", 1900.00, 0.00, "No");
+        String checkin = res.getCheckInDate();
+        String checkout = res.getCheckInDate();
 
-        Customer customer = new Customer(resDTO.getName(),resDTO.getEmail());
-        Room room = new Room();
-
-        Reservation reservation = new Reservation(resDTO.getGuestNum(), resDTO.getCheckInDate(), resDTO.getCheckOutDate(), customer);
-
-        return reservation;
+        S.AddReservation(res.getCustomer().getName(), res.getCustomer().getEmail(), res.getGuestNum(), 1, 1 , res.getCheckInDate(),  "1", res.getCheckOutDate(),"1", 5.0, 5.0, "Available");
     }
 
 
