@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import static com.HotelResS.TheCodeFellaz.Service.HotelService.transformFromDTO;
 
 @Controller
 public class CustomerController {
@@ -17,7 +18,7 @@ public class CustomerController {
     @RequestMapping(value="/Hotel.html", method= RequestMethod.GET)
     public String showForm(@NotNull Model model){
         //Object that holds information for both reservation and customer
-        ReservationDTO resDto = new ReservationDTO();
+        Reservation resDto = new Reservation();
         //MVC Design, So we are passing are object as a model from controller to the view = website to make it dynamic and
         // receive data by injection.
 
@@ -26,28 +27,13 @@ public class CustomerController {
     }
     //Requesting mapping to the view so that we can send a response or data to the webpage.
     @RequestMapping(value="/register", method=RequestMethod.POST)
-    public String submitForm(@ModelAttribute ReservationDTO resDto, @org.jetbrains.annotations.NotNull Model model){
+    public String submitForm(@ModelAttribute Reservation resDto,  @org.jetbrains.annotations.NotNull Model model){
         //System.out.println(resDto)
-        //Object
-        Reservation resSave = transformFromDTO(resDto);
+        //Object to save data to reservation,
 
         model.addAttribute("resDto", resDto);
         return "display-input";
     }
-
-    private @NotNull Reservation transformFromDTO(ReservationDTO resDTO){
-
-        CSVReaderPrint S = new CSVReaderPrint();
-        S.AddReservation(resDTO.getName(),resDTO.getEmail(),resDTO.getGuestNum(),4,1, resDTO.getCheckInDate(), "2:00PM", resDTO.getCheckOutDate(),"11:00AM", 1900.00, 0.00, "No");
-
-        Customer customer = new Customer(resDTO.getName(),resDTO.getEmail());
-        Reservation reservation = new Reservation(resDTO.getGuestNum(), resDTO.getCheckInDate(), resDTO.getCheckOutDate(), customer);
-
-        return reservation;
-    }
-
-
-
 
 }
 /*

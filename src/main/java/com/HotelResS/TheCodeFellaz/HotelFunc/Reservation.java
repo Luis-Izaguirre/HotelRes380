@@ -10,7 +10,6 @@ public class Reservation {
     private String checkInDate;
     private String checkOutDate;
     private Customer customer;
-    private Room room;
 
     public Reservation() {
     }
@@ -54,13 +53,6 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
 
     //Utility Methods
 
@@ -69,7 +61,6 @@ public class Reservation {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.customer = customer;
-        this.room = room;
     }
 
 
