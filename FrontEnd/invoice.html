@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Reservation Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .invoice {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .invoice-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .invoice-subtitle {
+            font-size: 14px;
+        }
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .item-description {
+            flex: 2;
+        }
+        .item-amount {
+            flex: 1;
+            text-align: right;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <div class="invoice-header">
+            <div class="invoice-title">Hotel Reservation Invoice</div>
+            <div class="invoice-subtitle">Invoice Date: August 18, 2023</div>
+        </div>
+        <div class="invoice-details">
+            <div><strong>Guest Name:</strong> John Doe</div>
+            <div><strong>Reservation ID:</strong> ABC123</div>
+            <div><strong>Check-in:</strong> September 1, 2023</div>
+            <div><strong>Check-out:</strong> September 5, 2023</div>
+        </div>
+        <div class="invoice-items">
+            <div class="item-row">
+                <div class="item-description">Deluxe Room (4 nights)</div>
+                <div class="item-amount">$800.00</div>
+            </div>
+            <div class="item-row">
+                <div class="item-description">Tax (10%)</div>
+                <div class="item-amount">$80.00</div>
+            </div>
+        </div>
+        <div class="total-row">
+            <div><strong>Total Amount:</strong></div>
+            <div><strong>$880.00</strong></div>
+        </div>
+    </div>
+</body>
+</html>
