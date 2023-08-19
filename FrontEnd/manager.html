@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Reservation Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .manager-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .manager-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .manager-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .manager-subtitle {
+            font-size: 14px;
+            color: #555;
+        }
+        .search-form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-button:hover {
+            background-color: #0056b3;
+        }
+        .reservation-details {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            display: none;
+        }
+        .modify-form {
+            margin-top: 20px;
+            display: none;
+        }
+        .details-label {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+        .details-value {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="manager-container">
+        <div class="manager-header">
+            <div class="manager-title">Hotel Reservation Manager</div>
+            <div class="manager-subtitle">Search and Modify Reservations</div>
+        </div>
+        <div class="search-form">
+            <form>
+                <div class="form-group">
+                    <label for="customerName" class="form-label">Customer Name</label>
+                    <input type="text" id="customerName" class="form-input" placeholder="Enter customer's name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reservationID" class="form-label">Reservation ID</label>
+                    <input type="text" id="reservationID" class="form-input" placeholder="Enter reservation ID">
+                </div>
+                <button type="button" class="form-button" onclick="searchReservation()">Search Reservation</button>
+            </form>
+        </div>
+        <div id="reservationDetails" class="reservation-details">
+            <div class="details-label">Reservation Details:</div>
+            <div id="customerNameDetails" class="details-value"></div>
+            <div id="reservationIDDetails" class="details-value"></div>
+            <div id="checkInDetails" class="details-value"></div>
+            <div id="checkOutDetails" class="details-value"></div>
+            <button type="button" class="form-button" onclick="showModifyForm()">Modify Reservation</button>
+        </div>
+        <div id="modifyForm" class="modify-form">
+            <form>
+                <div class="form-group">
+                    <label for="newRoomType" class="form-label">New Room Type</label>
+                    <select id="newRoomType" class="form-input">
+                        <option value="standard">Standard</option>
+                        <option value="deluxe">Deluxe</option>
+                        <option value="suite">Suite</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newCheckIn" class="form-label">New Check-in Date</label>
+                    <input type="date" id="newCheckIn" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="newCheckOut" class="form-label">New Check-out Date</label>
+                    <input type="date" id="newCheckOut" class="form-input" required>
+                </div>
+                <button type="button" class="form-button" onclick="modifyReservation()">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function searchReservation() {
+            const customerName = document.getElementById('customerName').value;
+            const reservationID = document.getElementById('reservationID').value;
+
+            // Simulate fetching reservation details (replace with actual backend logic)
+            const reservationDetails = {
+                customerName: "John Doe",
+                reservationID: "ABC123",
+                checkIn: "2023-09-01",
+                checkOut: "2023-09-05",
+            };
+
+            const customerNameDetails = document.getElementById('customerNameDetails');
+            const reservationIDDetails = document.getElementById('reservationIDDetails');
+            const checkInDetails = document.getElementById('checkInDetails');
+            const checkOutDetails = document.getElementById('checkOutDetails');
+
+            customerNameDetails.innerHTML = `<div class="details-label">Customer Name:</div><div class="details-value">${reservationDetails.customerName}</div>`;
+            reservationIDDetails.innerHTML = `<div class="details-label">Reservation ID:</div><div class="details-value">${reservationDetails.reservationID}</div>`;
+            checkInDetails.innerHTML = `<div class="details-label">Check-in Date:</div><div class="details-value">${reservationDetails.checkIn}</div>`;
+            checkOutDetails.innerHTML = `<div class="details-label">Check-out Date:</div><div class="details-value">${reservationDetails.checkOut}</div>`;
+
+            const reservationDetailsDiv = document.getElementById('reservationDetails');
+            reservationDetailsDiv.style.display = 'block';
+        }
+
+        function showModifyForm() {
+            const modifyForm = document.getElementById('modifyForm');
+            modifyForm.style.display = 'block';
+        }
+
+        function modifyReservation() {
+            const newRoomType = document.getElementById('newRoomType').value;
+            const newCheckIn = document.getElementById('newCheckIn').value;
+            const newCheckOut = document.getElementById('newCheckOut').value;
+
+            // Implement logic to modify the reservation (replace with actual backend logic)
+            // For demonstration, display the modified details
+            const newCheckInDetails = document.getElementById('checkInDetails');
+            const newCheckOutDetails = document.getElementById('checkOutDetails');
+            
+            newCheckInDetails.innerHTML = `<div class="details-label">New Check-in Date:</div><div class="details-value">${newCheckIn}</div>`;
+            newCheckOutDetails.innerHTML = `<div class="details-label">New Check-out Date:</div><div class="details-value">${newCheckOut}</div>`;
+            
+            alert('Reservation modified successfully.');
+        }
+    </script>
+</body>
+</html>
