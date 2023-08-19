@@ -22,7 +22,7 @@ public class PaymentController {
     }
     @RequestMapping(value="/payment", method= RequestMethod.POST)
     public String sendInvoice(@ModelAttribute Payment payment, Model model){
-        return "payment";
+        return "Invoice";
     }
 
     //Posting to backend so that it can check credentials of username and password

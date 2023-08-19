@@ -1,4 +1,4 @@
-package com.HotelResS.TheCodeFellaz.HotelFunc;
+package com.HotelResS.TheCodeFellaz.HotelModel;
 import com.HotelResS.TheCodeFellaz.HotelModel.Customer;
 import com.HotelResS.TheCodeFellaz.HotelModel.Room;
 
@@ -10,6 +10,7 @@ public class Reservation {
     private String checkInDate;
     private String checkOutDate;
     private Customer customer;
+    //NEED ROOMTYPE!!!!
 
     public Reservation() {
     }

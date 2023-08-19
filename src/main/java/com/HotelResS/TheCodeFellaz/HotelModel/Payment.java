@@ -8,15 +8,17 @@ public class Payment {
 
     private String expDate;
     private String cvc;
+    private String fees;
 
     public Payment() {
     }
 
-    public Payment(String nameVerify, String cardNum, String expDate, String cvc) {
+    public Payment(String nameVerify, String cardNum, String expDate, String cvc, String fees) {
         this.nameVerify = nameVerify;
         this.cardNum = cardNum;
         this.expDate = expDate;
         this.cvc = cvc;
+        this.fees = fees;
     }
 
     public String getNameVerify() {
@@ -49,5 +51,13 @@ public class Payment {
 
     public void setCvc(String cvc) {
         this.cvc = cvc;
+    }
+
+    public String getFees() {
+        return fees;
+    }
+
+    public void setFees(String fees) {
+        this.fees = fees;
     }
 }

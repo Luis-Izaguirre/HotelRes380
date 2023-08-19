@@ -1,11 +1,7 @@
 package com.HotelResS.TheCodeFellaz.Service;
 
 import com.HotelResS.TheCodeFellaz.CSVBASE.CSVReaderPrint;
-import com.HotelResS.TheCodeFellaz.HotelFunc.Reservation;
-import com.HotelResS.TheCodeFellaz.HotelFunc.ReservationDTO;
-import com.HotelResS.TheCodeFellaz.HotelModel.Customer;
-import com.HotelResS.TheCodeFellaz.HotelModel.Room;
-import org.jetbrains.annotations.NotNull;
+import com.HotelResS.TheCodeFellaz.HotelModel.Reservation;
 import org.springframework.stereotype.Service;
 
 @Service

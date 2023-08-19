@@ -1,4 +1,4 @@
-package com.HotelResS.TheCodeFellaz.HotelFunc;
+package com.HotelResS.TheCodeFellaz.HotelModel;
 
 public class Employee {
     private int employeID;

@@ -1,5 +1,5 @@
 package com.HotelResS.TheCodeFellaz.Controllers;
-import com.HotelResS.TheCodeFellaz.HotelFunc.Reservation;
+import com.HotelResS.TheCodeFellaz.HotelModel.Reservation;
 import com.HotelResS.TheCodeFellaz.Service.HotelService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;

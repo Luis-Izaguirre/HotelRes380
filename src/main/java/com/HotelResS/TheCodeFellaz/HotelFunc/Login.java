@@ -2,6 +2,8 @@
 package com.HotelResS.TheCodeFellaz.HotelFunc;
 
 
+import com.HotelResS.TheCodeFellaz.HotelModel.Employee;
+
 import java.io.*;
 
 
