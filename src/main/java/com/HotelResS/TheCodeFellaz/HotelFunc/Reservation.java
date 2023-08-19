@@ -1,97 +1,68 @@
 package com.HotelResS.TheCodeFellaz.HotelFunc;
+import com.HotelResS.TheCodeFellaz.HotelModel.Customer;
+import com.HotelResS.TheCodeFellaz.HotelModel.Room;
+
 import java.util.*;
 
 public class Reservation {
-    private static Scanner scan;
-    private int id;
-    private int roomNumber;
-    private Date arrivalDate;
-    private Date departureDate;
 
-    private String guestName;
+    private int guestNum;
+    private String checkInDate;
+    private String checkOutDate;
+    private Customer customer;
 
-    private boolean isActive;
-
-    public Reservation(int id, int roomNumber, Date arrivalDate, Date departureDate, String guestName){
-        this.id = id;
-        this.roomNumber  = roomNumber;
-        this.arrivalDate = arrivalDate;
-        this.departureDate = departureDate;
-        this.guestName = guestName;
+    public Reservation() {
     }
 
-
-    public int getId() {
-        return id;
+    public Reservation(int guestNum, String checkInDate, String checkOutDate, Customer customer) {
+        this.guestNum = guestNum;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.customer = customer;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getGuestNum() {
+        return guestNum;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public void setGuestNum(int guestNum) {
+        this.guestNum = guestNum;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public String getCheckInDate() {
+        return checkInDate;
     }
 
-    public Date getArrivalDate() {
-        return arrivalDate;
+    public void setCheckInDate(String checkInDate) {
+        this.checkInDate = checkInDate;
     }
 
-    public void setArrivalDate(Date arrivalDate) {
-        this.arrivalDate = arrivalDate;
+    public String getCheckOutDate() {
+        return checkOutDate;
     }
 
-    public Date getDepartureDate() {
-        return departureDate;
+    public void setCheckOutDate(String checkOutDate) {
+        this.checkOutDate = checkOutDate;
     }
 
-    public void setDepartureDate(Date departureDate) {
-        this.departureDate = departureDate;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public String getGuestName() {
-        return guestName;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public void setGuestName(String guestName) {
-        this.guestName = guestName;
-    }
 
     //Utility Methods
 
-    public static Reservation createReservation(int id, int roomNumber, Date arrivalDate, Date departureDate, String guestName){
-        //Create a new Reservation
-        return new Reservation(id, roomNumber, arrivalDate, departureDate, guestName);
-    }
-
-    public void modifyReservation(int roomNumber, Date arrivalDate, Date depertureDate, String guestName){
-       this.roomNumber = roomNumber;
-       this.arrivalDate = arrivalDate;
-       this.departureDate = depertureDate;
-       this.guestName = guestName;
-    }
-
-    public boolean getActive(){
-        return isActive;
-    }
-
-    public void setActive(boolean isActive){
-        this.isActive = isActive;
+    public void modifyReservation(int guestNum, String checkInDate, String checkOutDate, Customer customer, Room room){
+        this.guestNum = guestNum;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.customer = customer;
     }
 
 
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "id=" + id +
-                ", roomNumber=" + roomNumber +
-                ", arrivalDate=" + arrivalDate +
-                ", departureDate=" + departureDate +
-                ", guestName='" + guestName + '\'' +
-                '}';
-    }
+
 }

@@ -6,7 +6,6 @@ public class Invoice {
     private String invoiceNumber;
     private Date paymentDate;
     private int idCustomer;
-
     private int total;
     private boolean status;
 

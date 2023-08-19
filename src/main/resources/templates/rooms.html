@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta http-equiv= "Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RoomSelection</title>
+
+  <!--To Link to CSS Bootstrap and Jquery Servers-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script th:src="@{http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+
+  <style>
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+
+        .main-content {
+            margin: auto;
+        }
+
+        .header {
+            background-color: #002147;
+            color: #0054A9;
+            padding: 10px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .search-area {
+            background-color: blue;
+            padding: 10px;
+        }
+
+        .search-area label {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .rooms-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .rooms-table,
+        .rooms-table th,
+        .rooms-table td {
+            border: 1px solid grey;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="main-content">
+
+  <div class="header">Rooms</div>
+
+  <div class="search-area">
+
+
+
+    <label>Select Room:</label>
+
+    <form th:action="@{/payment-page}" method="post">
+      <div th:each="room : ${roomlist}">
+        <input type="text" th:id="${'room' + room.roomNum}" th:value="${room.roomNum}" th:name="roomNum" th:disabled="${room.availability}">
+        <label th:for="${'room' + room.roomNum}" th:text="${'Room ' + room.roomNum}"></label>
+        <span th:if="${room.availability}" style="color:red;">(Not Available)</span>
+      </div>
+      <input type="submit">
+    </form>
+
+
+    <!-- OLD BUTTONS TO SELECT CHECK-IN or CHECK-OUT DATES, FUTURE
+
+
+     <label for="DateInTBox">Check in Date:</label>
+     <input type="date" id="DateInTBox">
+
+
+     <label for="DateOutTBox">Check out Date:</label>
+     <input type="date" id="DateOutTBox">
+
+      <input type="number" th:field="*{number}"/>
+       </select>
+
+    <select id="RoomSelection">
+      <option th:each="room :${roomlist}" th:if="${room.availability}" th:text="${room.roomNum}" th:value="${room.roomNum}" ></option>
+      <option th:if="${#lists.size(roomlist) == 0}" disabled>Please try again</option>
+
+
+ -->
+
+
+
+
+
+    <!-- OLD RESET BUTTON <button onclick="reset()">Reset</button>  -->
+
+    </div>
+
+
+  <table class="rooms-table">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Room No</th>
+      <th>Room Type</th>
+      <th>Cost Per Night</th>
+      <th>Maximum People</th>
+      <th>Availability</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="room : ${roomlist}">
+        <td th:text="${roomStat.index}"></td>
+        <td th:text="${room.roomNum}">101</td>
+        <td th:text="${room.roomType}">Deluxe</td>
+        <td th:text="${room.roomPrice}">5000</td>
+        <td th:text="${room.roomCapacity}">3</td>
+        <td th:text="${room.availability}">Available</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+    </script>
+</body>
+
+</html>

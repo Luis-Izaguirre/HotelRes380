@@ -7,12 +7,12 @@
 </head>
 <body>
 <h2>Search Results</h2>
-<p th:text="name: ${customer.name}"></p>
-<p th:text="numGuests: ${customer.numGuests}"></p>
-<p th:text="email: ${customer.email}"></p>
-<p th:text="phone: ${customer.phone}"></p>
-<p th:text="checkInDate: ${customer.checkInDate}"></p>
-<p th:text="checkOutDate: ${customer.checkOutDate}"></p>
-<a href="/register">Submit another message</a>
+<p th:text="'name: ' + ${resDto.customer.name}"></p>
+<p th:text="'numGuests: ' + ${resDto.guestNum}"></p>
+<p th:text="'email: ' + ${resDto.customer.email}"></p>
+<p th:text="'phone: ' + ${resDto.customer.phone}"></p>
+<p th:text="'checkInDate: ' + ${resDto.checkInDate}"></p>
+<p th:text="'checkOutDate: ' + ${resDto.checkOutDate}"></p>
+<a href="/Hotel.html">Submit another message</a>
 </body>
 </html>
