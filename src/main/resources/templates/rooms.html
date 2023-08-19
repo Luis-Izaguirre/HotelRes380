@@ -67,7 +67,7 @@
 
     <label>Select Room:</label>
 
-    <form th:action="@{/payment-page}" method="post">
+    <form th:action="@{/payment}" method="post">
       <div th:each="room : ${roomlist}">
         <input type="text" th:id="${'room' + room.roomNum}" th:value="${room.roomNum}" th:name="roomNum" th:disabled="${room.availability}">
         <label th:for="${'room' + room.roomNum}" th:text="${'Room ' + room.roomNum}"></label>

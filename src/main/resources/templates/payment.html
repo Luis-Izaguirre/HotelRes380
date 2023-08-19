@@ -1,12 +1,138 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv= "Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+
+    <title>Payment for Hotel Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .payment-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .payment-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .payment-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .payment-subtitle {
+            font-size: 14px;
+        }
+        .payment-amount {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .payment-form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-submit {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
-<h1>=================</h1>
-<h1>This is the Payment Page</h1>
-<h1>=================</h1>
+    <div class="payment-container">
+        <div class="payment-header">
+            <div class="payment-title">Payment for Hotel Reservation</div>
+            <div class="payment-subtitle">Reservation ID: ABC123</div>
+        </div>
+        <div class="payment-amount"><strong>Amount to Pay: $880.00</strong></div>
+        <div class="payment-form">
+
+
+            <form th:object="${payment}" th:action="@{payment}" method="post">
+                <div class="form-group">
+                    <label for="paymentMethod" class="form-label">Select Payment Method</label>
+                    <select id="paymentMethod" class="form-input" required>
+                        <option value="card">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="cardDetails">
+                    <label for="cardNumber" class="form-label">Card Number</label>
+                    <input type="text" id="cardNumber" class="form-input" placeholder="Enter your card number" th:field="*{cardNum}" required>
+                </div>
+
+                <div class="form-group" id="expiryDate">
+                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                    <input type="text" id="expiryDate" class="form-input" placeholder="MM/YY" th:field="*{expDate}" required>
+                </div>
+
+                <div class="form-group" id="cvv">
+                    <label for="cvv" class="form-label">CVV</label>
+                    <input type="text" id="cvv" class="form-input" placeholder="CVV" th:field="*{cvc}" required>
+                </div>
+
+                <div class="form-group" id="nameOnCard">
+                    <label for="nameOnCard" class="form-label">Name on Card</label>
+                    <input type="text" id="nameOnCard" class="form-input" placeholder="Enter the name on the card" th:field="*{nameVerify}" required>
+                </div>
+
+                <button type="submit" class="form-submit">Make Payment</button>
+            </form>
+
+
+        </div>
+    </div>
+    <script>
+        const paymentMethodSelect = document.getElementById('paymentMethod');
+        const cardDetails = document.getElementById('cardDetails');
+        const expiryDate = document.getElementById('expiryDate');
+        const cvv = document.getElementById('cvv');
+        const nameOnCard = document.getElementById('nameOnCard');
+
+        paymentMethodSelect.addEventListener('change', () => {
+            if (paymentMethodSelect.value === 'card') {
+                cardDetails.style.display = 'block';
+                expiryDate.style.display = 'block';
+                cvv.style.display = 'block';
+                nameOnCard.style.display = 'block';
+            } else {
+                cardDetails.style.display = 'none';
+                expiryDate.style.display = 'none';
+                cvv.style.display = 'none';
+                nameOnCard.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

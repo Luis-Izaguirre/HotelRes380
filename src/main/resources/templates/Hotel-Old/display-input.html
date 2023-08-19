@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Displayed Data</title>
+
+</head>
+<body>
+<h2>Search Results</h2>
+<p th:text="'name: ' + ${payment.name}"></p>
+<p th:text="'numGuests: ' + ${payment.cardNumber}"></p>
+<p th:text="'email: ' + ${payment.customer.expMonth}"></p>
+<p th:text="'phone: ' + ${payment.customer.ExpYear}"></p>
+<p th:text="'checkInDate: ' + ${payment.CVC}"></p>
+<a href="/Hotel.html">Submit another message</a>
+</body>
+</html>

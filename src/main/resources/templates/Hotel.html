@@ -25,16 +25,16 @@
 <nav>
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link" aria-current="page" th:href="@{/Hotel.html#home}">Home</a>
+      <a class="nav-link" aria-current="page" th:href="@{/Hotel#home}">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/Hotel.html#room-search}">Room Search</a>
+      <a class="nav-link" th:href="@{/Hotel#room-search}">Room Search</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/Hotel.html#hotel-info}">Hotel Info</a>
+      <a class="nav-link" th:href="@{/Hotel#hotel-info}">Hotel Info</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" th:href="@{/Hotel.html#login}">Login</a>
+      <a class="nav-link" th:href="@{/Hotel#login}">Login</a>
     </li>
   </ul>
 </nav>
@@ -103,7 +103,7 @@
 <section id="room-search">
   <h2>Room Search</h2>
   <!-- Search criteria form -->
-  <form id="search-form" action="#" th:action="@{/register}" th:object="${resDto}" method="post">
+  <form id="search-form" action="#" th:action="@{/rooms}" th:object="${resDto}" method="post">
     <!-- Add your room search form elements here -->
     Name:  <input type="text" th:field="*{customer.name}"/>
     Email: <input type="text" th:field="*{customer.email}"/>
@@ -111,7 +111,9 @@
     Number of Guests: <input type="text" th:field="*{guestNum}"/>
     Check-in Date: <input type="text" th:field="*{checkInDate}"/>
     Check-out Date: <input type="text" th:field="*{checkOutDate}"/>
+
     <a th:href="@{/rooms}" class="btn btn-primary">Go to Login Page</a>
+
     <!---->
   </form>
   <!-- Search results with room details, pricing, pictures, and booking feature -->
@@ -120,8 +122,8 @@
   </div>
 </section>
 
-
 <!--Original Version
+
     <input type="text" placeholder="Name" id="name" th:field="*{name}" >
     <input type="text" placeholder="Number of Guests" id="num-guests" th:field="*{numGuests}" >
     <input type="text" placeholder="Email" id="email" th:field="*{email}" >

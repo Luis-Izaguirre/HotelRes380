@@ -20,28 +20,16 @@ public class RoomsController {
     private RoomService roomService;
 
     @RequestMapping(value="/rooms", method= RequestMethod.GET)
-    public String showRooms(@ModelAttribute Room room, @NotNull Model model){
+    public String showRooms( Model model){
         List<Room> roomlist = roomService.addRoom();
 
+        model.addAttribute("roomlist", roomlist);
 
-
-        for(Room roomCheck: roomlist){
-            if(room.isAvailability())
-            {
-                model.addAttribute("roomlist", roomlist);
-                return "payment-page";
-            }
-        }
-
-        model.addAttribute("invalidCredentials", true);
         return "rooms";
     }
-
-
-    @RequestMapping(value="/payment-page", method = RequestMethod.POST)
-    public String reserveARoom(){
-
-        return "payment-page";
+    @RequestMapping(value="/rooms", method= RequestMethod.POST)
+    public String reserveARoom(@ModelAttribute List<Room> roomlist,Model model){
+        return "rooms";
     }
 
 

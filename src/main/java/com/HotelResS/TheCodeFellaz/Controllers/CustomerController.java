@@ -11,7 +11,7 @@ public class CustomerController {
 
 
     //Request access to the hotel webpage
-    @RequestMapping(value="/Hotel.html", method= RequestMethod.GET)
+    @RequestMapping(value="/Hotel", method= RequestMethod.GET)
     public String showForm(@NotNull Model model){
         //Object that holds information for both reservation and customer
         Reservation resDto = new Reservation();
@@ -21,13 +21,13 @@ public class CustomerController {
         return "Hotel";
     }
     //Requesting mapping to the view so that we can send a response or data to the webpage.
-    @RequestMapping(value="/rooms", method=RequestMethod.POST)
+    @RequestMapping(value="/Hotel", method=RequestMethod.POST)
     public String submitForm(@ModelAttribute Reservation resDto,  @org.jetbrains.annotations.NotNull Model model){
         //System.out.println(resDto)
         //Object to save data to reservation,
         HotelService reservetoDB = new HotelService();
         reservetoDB.transformFromDTO(resDto);
-        return "rooms";
+        return "Hotel";
     }
 
 }
