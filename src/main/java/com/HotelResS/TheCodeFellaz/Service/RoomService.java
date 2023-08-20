@@ -2,9 +2,7 @@ package com.HotelResS.TheCodeFellaz.Service;
 
 import com.HotelResS.TheCodeFellaz.CSVBASE.CSVDateMatcher;
 import com.HotelResS.TheCodeFellaz.CSVBASE.DateRangeGenerator;
-import com.HotelResS.TheCodeFellaz.CSVBASE.customer;
-import com.HotelResS.TheCodeFellaz.HotelModel.Reservation;
-import com.HotelResS.TheCodeFellaz.HotelModel.Room;
+import com.HotelResS.TheCodeFellaz.HotelModel.Hotel;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,13 +13,9 @@ public class RoomService {
 
     public ArrayList<String> addRoom(){
 
-        Reservation reservation = new Reservation();
-
-        String[] splitStr = reservation.toString().split(",", 4);
-
         DateRangeGenerator J = new DateRangeGenerator();
 
-        ArrayList<String> S = J.PotentialDates( splitStr[3], splitStr[4]);
+        ArrayList<String> S = J.PotentialDates(Hotel.getInstance().getCheckInDate() , Hotel.getInstance().getCheckOutDate());
 
         CSVDateMatcher G = new CSVDateMatcher();
         ArrayList<String> P = G.UnoccupiedRooms(S);
@@ -29,3 +23,17 @@ public class RoomService {
         return P;
     }
 }
+/**
+ *
+ *
+ *
+ *
+ *         String[] splitStr = reservation.toString().split(",", 4);
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * */

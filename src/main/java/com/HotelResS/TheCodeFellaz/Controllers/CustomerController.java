@@ -1,4 +1,5 @@
 package com.HotelResS.TheCodeFellaz.Controllers;
+import com.HotelResS.TheCodeFellaz.HotelModel.Hotel;
 import com.HotelResS.TheCodeFellaz.HotelModel.Reservation;
 import com.HotelResS.TheCodeFellaz.Service.HotelService;
 import org.jetbrains.annotations.NotNull;
@@ -25,11 +26,14 @@ public class CustomerController {
     public String submitForm(@ModelAttribute Reservation resDto,  @org.jetbrains.annotations.NotNull Model model){
         //System.out.println(resDto)
         //Object to save data to reservation,
+        //Hotel hotel = new Hotel();
+        Hotel.getInstance().setGuest(resDto.getGuestNum());
+        Hotel.getInstance().setCheckInOutStatus(resDto.getCheckInDate());
+        Hotel.getInstance().setCheckOutDate(resDto.getCheckOutDate());
+        Hotel.getInstance().setName(resDto.getCustomer().getName());
+        Hotel.getInstance().setContact(resDto.getCustomer().getEmail());
 
-
-        HotelService reservetoDB = new HotelService();
-        reservetoDB.transformFromDTO(resDto);
-        return "Hotel";
+        return "display-input";
     }
 
 }

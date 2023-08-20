@@ -2,7 +2,6 @@ package com.HotelResS.TheCodeFellaz.HotelModel;
 
 public class Reservation {
 
-    public static String savedRes = "";
     private int guestNum;
     private String checkInDate;
     private String checkOutDate;
@@ -51,13 +50,6 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public static String getSavedRes() {
-        return savedRes;
-    }
-
-    public static void setSavedRes(String savedRes) {
-        Reservation.savedRes = savedRes;
-    }
 
     public void modifyReservation(int guestNum, String checkInDate, String checkOutDate, Customer customer, Room room){
         this.guestNum = guestNum;

@@ -4,105 +4,123 @@ import org.apache.catalina.Manager;
 
 public class Hotel {
 
-    private static String Name;
-    private static String Contact;
-    private static int Guest;
-    private static int RoomNum;
-    private static int RoomType;
-    private static String CheckInDate;
-    private static String CheckOutDate;
-    private static Double Fees;
-    private static Double Discount;
-    private static String CheckInOutStatus;
+    //private static instance
+    private static Hotel hotel_instance = null;
+    private String Name;
+    private String Contact;
+    private int Guest;
+    private int RoomNum;
+    private int RoomType;
+    private  String CheckInDate;
+    private  String CheckOutDate;
+    private  Double Fees;
+    private  Double Discount;
+    private  String CheckInOutStatus;
 
+    private static String CheckInTime;
+    private static String CheckOutTime;
 
-    //Mananger, Employee LATER
-    private Employee employee;
-    private Manager manager;
-    private Payment payment;
-    private Customer customer;
-
-    public Hotel() {
+    private Hotel(){}
+    public static Hotel getInstance(){
+        if(hotel_instance == null) {
+            hotel_instance = new Hotel();
+        }
+        return hotel_instance;
     }
 
-
-    public static String getName() {
+    public String getName() {
         return Name;
     }
 
-    public static void setName(String name) {
+    public void setName(String name) {
         Name = name;
     }
 
-    public static String getContact() {
+    public String getContact() {
         return Contact;
     }
 
-    public static void setContact(String contact) {
+    public void setContact(String contact) {
         Contact = contact;
     }
 
-    public static int getGuest() {
+    public int getGuest() {
         return Guest;
     }
 
-    public static void setGuest(int guest) {
+    public void setGuest(int guest) {
         Guest = guest;
     }
 
-    public static int getRoomNum() {
+    public int getRoomNum() {
         return RoomNum;
     }
 
-    public static void setRoomNum(int roomNum) {
+    public void setRoomNum(int roomNum) {
         RoomNum = roomNum;
     }
 
-    public static int getRoomType() {
+    public int getRoomType() {
         return RoomType;
     }
 
-    public static void setRoomType(int roomType) {
+    public void setRoomType(int roomType) {
         RoomType = roomType;
     }
 
-    public static String getCheckInDate() {
+    public String getCheckInDate() {
         return CheckInDate;
     }
 
-    public static void setCheckInDate(String checkInDate) {
+    public void setCheckInDate(String checkInDate) {
         CheckInDate = checkInDate;
     }
 
-    public static String getCheckOutDate() {
+    public String getCheckOutDate() {
         return CheckOutDate;
     }
 
-    public static void setCheckOutDate(String checkOutDate) {
+    public void setCheckOutDate(String checkOutDate) {
         CheckOutDate = checkOutDate;
     }
 
-    public static Double getFees() {
+    public Double getFees() {
         return Fees;
     }
 
-    public static void setFees(Double fees) {
+    public void setFees(Double fees) {
         Fees = fees;
     }
 
-    public static Double getDiscount() {
+    public Double getDiscount() {
         return Discount;
     }
 
-    public static void setDiscount(Double discount) {
+    public void setDiscount(Double discount) {
         Discount = discount;
     }
 
-    public static String getCheckInOutStatus() {
+    public String getCheckInOutStatus() {
         return CheckInOutStatus;
     }
 
-    public static void setCheckInOutStatus(String checkInOutStatus) {
+    public void setCheckInOutStatus(String checkInOutStatus) {
         CheckInOutStatus = checkInOutStatus;
+    }
+
+    public static String getCheckInTime() {
+        return CheckInTime;
+    }
+
+    public static void setCheckInTime(String checkInTime) {
+        CheckInTime = checkInTime;
+    }
+
+    public static String getCheckOutTime() {
+        return CheckOutTime;
+    }
+
+    public static void setCheckOutTime(String checkOutTime) {
+        CheckOutTime = checkOutTime;
     }
 }
