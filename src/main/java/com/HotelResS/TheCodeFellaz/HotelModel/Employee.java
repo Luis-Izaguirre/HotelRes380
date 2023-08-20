@@ -1,5 +1,8 @@
 package com.HotelResS.TheCodeFellaz.HotelModel;
 
+import static com.HotelResS.TheCodeFellaz.HotelModel.Hotel.getName;
+import static com.HotelResS.TheCodeFellaz.HotelModel.Hotel.setName;
+
 public class Employee {
     private int employeID;
     private boolean roomAvailability;
@@ -32,6 +35,7 @@ public class Employee {
 
     @Override
     public String toString() {
+
         return "Employee{" +
                 "employeID=" + employeID +
                 ", roomAvailability=" + roomAvailability +

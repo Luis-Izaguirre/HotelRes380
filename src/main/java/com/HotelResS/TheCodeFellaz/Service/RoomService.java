@@ -22,6 +22,7 @@ public class RoomService {
         DateRangeGenerator J = new DateRangeGenerator();
 
         ArrayList<String> S = J.PotentialDates( splitStr[3], splitStr[4]);
+
         CSVDateMatcher G = new CSVDateMatcher();
         ArrayList<String> P = G.UnoccupiedRooms(S);
 

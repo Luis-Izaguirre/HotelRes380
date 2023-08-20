@@ -66,4 +66,13 @@ public class Reservation {
         this.customer = customer;
     }
 
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "guestNum=" + guestNum +
+                ", checkInDate='" + checkInDate + '\'' +
+                ", checkOutDate='" + checkOutDate + '\'' +
+                ", customer=" + customer +
+                '}';
+    }
 }
