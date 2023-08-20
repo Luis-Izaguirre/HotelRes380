@@ -1,7 +1,7 @@
 package com.HotelResS.TheCodeFellaz.CSVBASE;
 
 public class Date {
-    public int DateDifference(String DateIn, String DateOut) 
+    public int numberOfNights(String DateIn, String DateOut) 
     {
         String dateIn = DateIn;// takes check in date from method call
         String dateOut = DateOut;//takes checkout date from method call

@@ -1,11 +1,8 @@
 package com.HotelResS.TheCodeFellaz.HotelModel;
-import com.HotelResS.TheCodeFellaz.HotelModel.Customer;
-import com.HotelResS.TheCodeFellaz.HotelModel.Room;
-
-import java.util.*;
 
 public class Reservation {
 
+    public static String savedRes = "";
     private int guestNum;
     private String checkInDate;
     private String checkOutDate;
@@ -54,8 +51,13 @@ public class Reservation {
         this.customer = customer;
     }
 
+    public static String getSavedRes() {
+        return savedRes;
+    }
 
-    //Utility Methods
+    public static void setSavedRes(String savedRes) {
+        Reservation.savedRes = savedRes;
+    }
 
     public void modifyReservation(int guestNum, String checkInDate, String checkOutDate, Customer customer, Room room){
         this.guestNum = guestNum;
@@ -63,7 +65,5 @@ public class Reservation {
         this.checkOutDate = checkOutDate;
         this.customer = customer;
     }
-
-
 
 }

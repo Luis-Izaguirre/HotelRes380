@@ -63,22 +63,17 @@
 
   <div class="search-area">
 
-
-
     <label>Select Room:</label>
 
-    <form th:action="@{/payment}" method="post">
-      <div th:each="room : ${roomlist}">
-        <input type="text" th:id="${'room' + room.roomNum}" th:value="${room.roomNum}" th:name="roomNum" th:disabled="${room.availability}">
-        <label th:for="${'room' + room.roomNum}" th:text="${'Room ' + room.roomNum}"></label>
-        <span th:if="${room.availability}" style="color:red;">(Not Available)</span>
-      </div>
+    <form th:oject="${roomVal}" th:action="@{/payment}" method="post">
+        <input type="text" th:field="*{roomNum}" id="nameField"/>
       <input type="submit">
     </form>
 
+</div>
 
     <!-- OLD BUTTONS TO SELECT CHECK-IN or CHECK-OUT DATES, FUTURE
-
+<label th:for="${'room' + room.roomNum}" th:text="${'Room ' + room.roomNum}"></label>
 
      <label for="DateInTBox">Check in Date:</label>
      <input type="date" id="DateInTBox">

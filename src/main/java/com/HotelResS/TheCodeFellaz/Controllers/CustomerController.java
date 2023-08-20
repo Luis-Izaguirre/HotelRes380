@@ -25,6 +25,8 @@ public class CustomerController {
     public String submitForm(@ModelAttribute Reservation resDto,  @org.jetbrains.annotations.NotNull Model model){
         //System.out.println(resDto)
         //Object to save data to reservation,
+
+
         HotelService reservetoDB = new HotelService();
         reservetoDB.transformFromDTO(resDto);
         return "Hotel";

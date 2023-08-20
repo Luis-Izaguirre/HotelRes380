@@ -1,6 +1,7 @@
 package com.HotelResS.TheCodeFellaz.CSVBASE;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,31 +10,55 @@ import java.util.ArrayList;
 
 public class CSVReaderPrint 
 {
-    public void PrintReservations()// prints all the reservations from the csv file in a readable format to the terminal, its primary purpose is for testing but will be adapted later
-    {
-        
-        String line = ""; //used to check if the next line is empty
-        String splitBy = ",";//used to diferentiate between the values in the csv file
-        boolean firstLineSkipped = false; //used to skip the first line of the csv file that is not used by the code
-
+       public String[][] PrintReservations() {// takes each row of the csv file and adds them to a 2D array
+        String line = "";
+        String splitBy = ",";//will be used to seperate the vlaues from the csv row format
+        boolean firstLineSkipped = false;// used to skip the first line
+    
         try {
-            
-            BufferedReader br = new BufferedReader(new FileReader("Reservations.csv")); //calling the bufferedreader method to read from the reservation csv file, reservation.csv file must be in the same folder as this class to work
-
-            while ((line = br.readLine()) != null) { //checks that the next line is not empty for the loop
-                if (!firstLineSkipped) {//skips first line in the csv file.
+            BufferedReader br = new BufferedReader(new FileReader("Reservations.csv"));
+    
+            ArrayList<String[]> reservationsList = new ArrayList<>(); // will be used to store a reservations
+    
+            while ((line = br.readLine()) != null) {//skips the first row of the csv file
+                if (!firstLineSkipped) {
                     firstLineSkipped = true;
-                    continue; 
+                    continue;
                 }
 
-                String[] reservation = line.split(splitBy);//takes each value for the row in a csv file and adds it to an array which the print statment bellow will use
-                // formats and prints the data from the Reservations.csv file.VVV
-                System.out.println("Customer's Name: " + reservation[0] + ", Contact: " + reservation[1] + ", Guest(s): " + reservation[2] + ", Room Number: " + reservation[3] + ", Room Type: " + reservation[4] + ", Check In Date: " + reservation[5] + ", Check In Time: " + reservation[6] + ", Check Out Date: " + reservation[7] + ", Check Out Time: " + reservation[8] + ", Fees: " + reservation[9] + ", Discount: " + reservation[10] + ", Total: " + reservation[11] + ", Check in/out status: " + reservation[12]);
+    
+                String[] reservation = line.split(splitBy);//creates an array and populates it with the values of the row 
+                reservationsList.add(reservation); // adds a reservation array to the list
             }
+    
+            
+            int maxIndex = -1; // Find the maximum index value first
+            for (String[] reservation : reservationsList) {
+                int lastIndex = Integer.parseInt(reservation[reservation.length - 1]);
+                if (lastIndex > maxIndex) {
+                    maxIndex = lastIndex;
+                }
+            }
+    
+            String[][] reservationsArray = new String[maxIndex + 1][]; // Create the 2D array
+    
+            for (String[] reservation : reservationsList) {
+                int lastIndex = Integer.parseInt(reservation[reservation.length - 1]);
+                reservationsArray[lastIndex] = reservation; // populates the array at the index
+            }
+
+            return reservationsArray;//returns 2d array with all reservations
+    
+    
         } catch (IOException e) {
-            e.printStackTrace();//if the code goes here something went wrong :(
+            e.printStackTrace();
+            
+        return null;//error :(
+        
         }
-    } 
+    }
+    
+    
 
             //addreservation is called by the Customer class and recives its inputs form the CreateReservation method
     public void AddReservation(String Name, String Contact, int Guests, int RoomNum, int RoomType, String CheckInDate, String CheckInTime, String CheckOutDate, String CheckOutTime, Double Fees, Double Discount, String CheckInOutStatus)
@@ -41,7 +66,28 @@ public class CSVReaderPrint
         Double Total = Fees - Discount;// calculates total 
         String csvFile = "Reservations.csv"; //writes to the reservation file
         String delimiter = ","; //seperates the inputs with a ","
-
+        int confirmationNumber = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            String lastLine = null;
+            
+            while ((line = br.readLine()) != null) {//looks for the last row in the csv file
+                lastLine = line;
+            }
+            
+            if (lastLine != null) {//once the last row is found
+                String[] values = lastLine.split(",");//sets the row to an array
+                if (values.length > 0) {
+                    int lastValue = Integer.parseInt(values[values.length - 1]);//gets the confirmation number from the last row
+                    lastValue ++;//adds one to the last confirmation number
+                    confirmationNumber = lastValue;//sets the confirmation number for the new reservation
+                }
+            } else {
+                System.out.println("CSV file is empty.");//error
+            }
+        } catch (IOException e) {
+            e.printStackTrace();//bigger error:(
+        }
         try (FileWriter writer = new FileWriter(csvFile, true)) {//prints to a new line on the Reservations.csv file.
             
             writer.append(Name).append(delimiter)//prints and formats the input to the Reservations.csv file.
@@ -56,12 +102,13 @@ public class CSVReaderPrint
                     .append("$"+Double.toString(Fees)).append(delimiter)
                     .append("$"+Double.toString(Discount)).append(delimiter)
                     .append("$"+Double.toString(Total)).append(delimiter)
-                    .append(CheckInOutStatus).append("\n");
+                    .append(CheckInOutStatus).append(delimiter)
+                    .append(Integer.toString(confirmationNumber)).append("\n");
 
             System.out.println("Reservation Confirmed!");//for testing only, prints to terminal
 
             DateRangeGenerator J = new DateRangeGenerator();
-        ArrayList<String> S = J.Lain(CheckInDate, CheckOutDate);//takes the check in and check out date and outputs an array with all the dates for the reservation
+        ArrayList<String> S = J.PotentialDates(CheckInDate, CheckOutDate);//takes the check in and check out date and outputs an array with all the dates for the reservation
         System.out.println(S);
 
         CSVDateUpdater B =new CSVDateUpdater();// updates the Rooms.csv file by adding the reservation dates to the row with the room number for the reservation.
@@ -77,12 +124,12 @@ public class CSVReaderPrint
 
     
 
-    public String ReturnReservation(String NameIn) 
+    public String searchReservation(String ConfirmationNumber) 
     {
-        return GetReservation(NameIn);
+        return GetReservation(ConfirmationNumber);
     }
 
-    public String searchRowByFirstValue(String csvFilePath, String targetValue) throws IOException //called by GetReservation method and recieves inputs from that method, finds the reservation information based on name, will be changed to reservation number or customer id later
+    public String searchRowByLastValue(String csvFilePath, String targetValue) throws IOException //called by GetReservation method and recieves inputs from that method, finds the reservation information based on name, will be changed to reservation number or customer id later
     {
         String result = null;//variable used to check if the searched value was found or not
 
@@ -91,7 +138,7 @@ public class CSVReaderPrint
 
             while ((line = br.readLine()) != null) {//checks the row to see if it is empty
                 String[] values = line.split(",");//adds all the csv values in the row to an array
-                if (values.length > 0 && values[0].equals(targetValue)) {//searches the first index and compares it to the search value and if it is the same it will run the code in the if stament and if not then it will move on to the next line untill it is empty
+                if (values.length > 0 && values[13].equals(targetValue)) {//searches the last index and compares it to the search value and if it is the same it will run the code in the if stament and if not then it will move on to the next line untill it is empty
                     result = line; // sets result equal the line the value was found in the csv file
                     break;
                 }
@@ -101,12 +148,12 @@ public class CSVReaderPrint
         return result;//returns the row that the reservation data was found in 
     }
 
-    public String GetReservation(String Name) {
+    public String GetReservation(String Number) {
         String csvFilePath = "Reservations.csv";//searches this file
-        String targetValue = Name;//searches for this value at the first value of each row 
+        String targetValue = Number;//searches for this value at the first value of each row 
 
         try {
-            String foundRow = searchRowByFirstValue(csvFilePath, targetValue);// calls method to search for the row with the searched for value, and populates the string foundrow with the data from the row in the csv file
+            String foundRow = searchRowByLastValue(csvFilePath, targetValue);// calls method to search for the row with the searched for value, and populates the string foundrow with the data from the row in the csv file
             if (foundRow != null) {// checks to see if the row is empty
                 String[] values = foundRow.split(",");//populates an array with the values from the row from the csv file
                 if (values.length >= 11) {//checks to see if all the reservation data is there
@@ -117,7 +164,9 @@ public class CSVReaderPrint
                             "Check-In-Date: " + values[5] + " " +
                             "Check-Out-Date: " + values[7] + " " +
                             "Room-Number: " + values[3] + " " +
-                            "Room-Type: " + values[4];
+                            "Room-Type: " + values[4] + " " +
+                            "Total: " + values[11] + " " +
+                            "Confirmation Number: " + values[13];
                     return formattedOutput;
                 } else {
                     return "Not enough values in the row.";//error 
@@ -130,17 +179,107 @@ public class CSVReaderPrint
         }
     }
 
+    public void DeleteRes(String targetValue) throws IOException {//deletes reservation by searching for the confirmation number, moddified version ofsearchRowByLastValue
+    String result = null;
+
+    ArrayList<String> lines = new ArrayList<>();
+
+    try (BufferedReader br = new BufferedReader(new FileReader("Reservations.csv"))) {
+        String line;
+
+        while ((line = br.readLine()) != null) {//adds the rows in the csv file that do not have the searched for confirmation number to the lines array list
+            String[] values = line.split(",");
+            if (values.length > 0 && values[13].equals(targetValue)) {
+                result = line;//serves no purpouse used to hold deleted value
+            } else {
+                lines.add(line); // Add the row to the list if it doesn't match the targetValue/ searched for confirmation number
+            }
+        }
+    }
+
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter("Reservations.csv"))) {
+        for (String updatedLine : lines) {//rewrites the csv file
+            bw.write(updatedLine);
+            bw.newLine();
+        }
+    }
+
+    
 }
 
 
-/*
- * How to Call methods
- * CSVReaderPrint S = new CSVReaderPrint();
-        S.AddReservation("Bob Cohen","Bob.Cohen@gmail.com",7,401,4,"9/19/2023","2:00 PM","09/23/23","11:00 AM",1900.00,0.00,"No");
 
-   CSVReaderPrint G = new CSVReaderPrint();
-        G.PrintReservations();
 
-          CSVReaderPrint J = new CSVReaderPrint();
-        System.out.println(J.ReturnReservation("Ori Cohen"));
- */
+
+    public void Discount(String targetValue, double subtractionValue) throws IOException {//adds a discount to a reservation, moddified version ofsearchRowByLastValue
+      
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Reservations.csv"))) {
+            StringBuilder newContent = new StringBuilder();
+
+            String line;
+
+            while ((line = br.readLine()) != null) {//runs throught each row in the csv
+                String[] values = line.split(",");
+                
+                if (values.length >= 14 && values[13].equals(targetValue)) {//searches for row by confirmation number
+                    
+
+                    String ninthValue = values[9].trim(); // finds the 10th value, named ninth value due to misscount
+                    double ninthValueDouble = Double.parseDouble(ninthValue.substring(1)); // Remove "$" and convert to double
+                    
+                    double tenthValue = subtractionValue;//used to replace the 11th value in the csv, named 10th value due to misscount
+                    double eleventhValue = ninthValueDouble - subtractionValue;//used to set the new 12th value,named 11th value due to misscount
+                    
+                    values[10] = String.format("$%.1f", tenthValue); // Format the double with "$" and two decimal places, sets the 11th value to the discount total
+                    values[11] = String.format("$%.1f", eleventhValue);//sets the total to include the discount
+                    
+                    newContent.append(String.join(",", values)).append(System.lineSeparator());//holds the new updated row
+                } else {
+                    newContent.append(line).append(System.lineSeparator()); //holds the original row
+                }
+            }
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("Reservations.csv"))) {
+                bw.write(newContent.toString());// writes the row being held to the csv
+            }
+        }
+
+        
+    }
+
+    public void CheckInOut(String targetValue, String newValue) throws IOException {//sets check in/ out status to a reservation, moddified version ofsearchRowByLastValue
+        
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Reservations.csv"))) {
+            StringBuilder newContent = new StringBuilder();
+
+            String line;
+
+            while ((line = br.readLine()) != null) {//runs through each row of the csv file
+                String[] values = line.split(",");// sets the current row to an array
+                
+                if (values.length >= 14 && values[13].equals(targetValue)) {//checks for matching confirmation number
+                   
+
+                    values[12] = newValue; //sets the check in/out status from the seccond variable in the function input
+                    
+                    newContent.append(String.join(",", values)).append(System.lineSeparator());// holds the new modified row 
+                } else {
+                    newContent.append(line).append(System.lineSeparator());//holds a row that was not modified 
+                }
+            }
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("Reservations.csv"))) {
+                bw.write(newContent.toString());//writes the rows back to the csv file
+            }
+        }
+
+        
+    }
+
+
+
+
+}
+
