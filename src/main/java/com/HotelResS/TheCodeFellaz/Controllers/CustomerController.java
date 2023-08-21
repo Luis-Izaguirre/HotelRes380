@@ -1,7 +1,8 @@
 package com.HotelResS.TheCodeFellaz.Controllers;
-import com.HotelResS.TheCodeFellaz.HotelModel.Hotel;
+import com.HotelResS.TheCodeFellaz.CSVBASE.CSVReaderPrint;
+import com.HotelResS.TheCodeFellaz.CSVBASE.FileReaderPrint;
+import com.HotelResS.TheCodeFellaz.HotelModel.Customer;
 import com.HotelResS.TheCodeFellaz.HotelModel.Reservation;
-import com.HotelResS.TheCodeFellaz.Service.HotelService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,32 +13,42 @@ public class CustomerController {
 
 
     //Request access to the hotel webpage
-    @RequestMapping(value="/Hotel", method= RequestMethod.GET)
-    public String showForm(@NotNull Model model){
+    @RequestMapping(value = "/Hotel", method = RequestMethod.GET)
+    public String showForm(@NotNull Model model) {
         //Object that holds information for both reservation and customer
         Reservation resDto = new Reservation();
         //MVC Design, So we are passing are object as a model from controller to the view = website to make it dynamic and
-        // receive data by injection.
+        // receive data by injection
+
+
         model.addAttribute("resDto", resDto);
         return "Hotel";
     }
+
     //Requesting mapping to the view so that we can send a response or data to the webpage.
-    @RequestMapping(value="/Hotel", method=RequestMethod.POST)
-    public String submitForm(@ModelAttribute Reservation resDto,  @org.jetbrains.annotations.NotNull Model model){
-        //System.out.println(resDto)
-        //Object to save data to reservation,
-        //Hotel hotel = new Hotel();
-        Hotel.getInstance().setGuest(resDto.getGuestNum());
+    @RequestMapping(value = "/Hotel", method = RequestMethod.POST)
+    public String submitForm(@ModelAttribute Reservation resDto, @org.jetbrains.annotations.NotNull Model model) {
+
+        return "Hotel";
+    }
+
+
+}
+
+
+
+
+/*
+OLD
+
+
+ Hotel.getInstance().setGuest(resDto.getGuestNum());
         Hotel.getInstance().setCheckInOutStatus(resDto.getCheckInDate());
         Hotel.getInstance().setCheckOutDate(resDto.getCheckOutDate());
         Hotel.getInstance().setName(resDto.getCustomer().getName());
         Hotel.getInstance().setContact(resDto.getCustomer().getEmail());
 
-        return "display-input";
-    }
 
-}
-/*
 
 
 

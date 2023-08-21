@@ -1,5 +1,7 @@
 package com.HotelResS.TheCodeFellaz.HotelModel;
 
+import com.HotelResS.TheCodeFellaz.CSVBASE.CustomerFees;
+
 public class Customer {
 
     private String name;
@@ -43,6 +45,12 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    private void printReservation(){
+        CustomerFees S = new CustomerFees();
+
+        S.CreateReservation("Ori Cohen", "Ori@email.com", 5, "08/19/2023", "08/25/2023", 301);
     }
 
 }
