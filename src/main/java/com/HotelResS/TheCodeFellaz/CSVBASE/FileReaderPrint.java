@@ -6,7 +6,7 @@ public class FileReaderPrint {
 
     public void prtFile(String filename, String userData) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\lmuno\\IdeaProjects\\HotelRes380\\src\\main\\java\\com\\HotelResS\\TheCodeFellaz\\CSVBASE\\Reservations.csv", true));
             writer.write(userData);
             writer.close();
         } catch (IOException e) {

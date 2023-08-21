@@ -149,7 +149,7 @@ public class CSVReaderPrint
     }
 
     public String GetReservation(String Number) {
-        String csvFilePath = "Reservations.csv";//searches this file
+        String csvFilePath = "C:\\Users\\lmuno\\IdeaProjects\\HotelRes380\\src\\main\\java\\com\\HotelResS\\TheCodeFellaz\\CSVBASE\\Reservations.csv";//searches this file
         String targetValue = Number;//searches for this value at the first value of each row 
 
         try {
